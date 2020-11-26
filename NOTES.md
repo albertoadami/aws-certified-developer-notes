@@ -17,7 +17,7 @@ An other good practice is to configure the root user wih the MFA authentication.
 ***IAM*** is the service provided by AWS to manage the users. In IAM you can create one ore more users, who will have various degrees of access to the various AWS services.
 
 All the AWS physical resources contain the following concepts:
-* ***AWS Edge Location:*** AWS datacenter that don't contains AWS services, but instead it's used to deliver content to parts of the world, using for example CloudFront service (CDN).
+* ***AWS Edge Location:*** AWS datacenter that doesn't contain AWS services, but instead it's used to deliver content to parts of the world, using for example CloudFront service (CDN).
 * ***AWS Region:*** the region contains the components and the services. Each region has a name that represents its area. The region are logically separated.
 
 Each region is composed of multiple ***Availability Zones (AZs)***, that provides high availability and fault tolerance. All the regions are collocated around all the world.
