@@ -66,17 +66,17 @@ In AWS a ***IAM user*** has:
 * Policies;
 * Access key.
 
-A user can also be part of a ***IAM Group***. Each component of the gruoup has the same policies that are associated with he gruop, plus the personal ones. 
-
 The user credenials should never be stored or passed to an EC2 insance for security reasons.
 
-A best practive is to create multiple IAM Groups with different policies for tthe vaious kind of users and associate the users with the correspondings groups.
+A user can also be part of a ***IAM Group***. Each component of the gruoup has the same policies that are associated with he gruop, plus the personal ones. 
 
-***IAM Role:*** something than another entity can "assume" and in doing so acquires the specific permissions defined by the role. For example an AWS entitty (EC2) needs to access to an other AWS entity (S3).
+A best practive is to create multiple IAM Groups with different policies for the vaious kind of users and associate the users with the correspondings groups.
 
-In AWS an instance can have only one roled attached for time. The IAM role is configured with policies for access to the required services/components inside AWS.
+***IAM Role:*** something than another entity can "assume" and in doing so acquires the specific permissions defined by the role. For example an AWS entity (EC2) needs to access to an other AWS entity (S3).
 
-When you create a new role you have to select the AWS service for which tadd the policy versus other AWS services. After you successfully create the role, you need also to associated the rolo to an instance (an EC2 for example).
+In AWS an instance can have only one role attached for time. The IAM role is configured with policies for access to the required services/components inside AWS.
+
+When you create a new role you have to select the AWS service for which add the policy versus other AWS services. After you successfully create the role, you need also to associate the rolo to an instance (an EC2 for example).
 
 ***IAM Security Token Service (STS)*** allows you to create temporary security credentials that grant trusted users access to your AWS resources. These credentials are for short time usage (from some minutes to several hours).
 
@@ -97,7 +97,7 @@ The API Keys are only available when a new user is created. The access key is as
 ***AWS Key Management Service (KNS)*** is a managed service to create and control the encryption keys to encrypt your data. It's used to encrypt data inside AWS services.
 The data key can be used to encrypt the plain text data.
 
-***Amazon Inspector*** is not under the IAM service. It's a tool tthat helps you to check if there are some security vulnerabilities. If can be also integrated with your development and deployment pipeline. This allow to make security tests in a more regular occurrence.
+***Amazon Inspector*** is not under the IAM service. It's a tool that helps you to check if there are some security vulnerabilities. If can be also integrated with your development and deployment pipeline. This allow to make security tests in a more regular occurrence.
 
 Instead ***Amazon Cognito*** provides authentication, authorization and user management. It's not under IAM but contains a supersett of the functionality of web identify federation. 
 
