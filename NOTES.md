@@ -58,6 +58,8 @@ The best practive, when we create a new account, is to:
 * ***Power user access:*** admin without user management;
 * ***Read only access:*** only view to AWS services.
 
+When you define your policies, AWS reccomends that you adopt the principle of ***least privilege*** and grant someone with the minimum permissions they need for their daily tasks.
+
 If to an IAM user we attach an admin policy and also a "deny-all" custom police, the user will not be able to do anything. This because the explicit deny ovverrides the other policy in AWS.
 
 In AWS a ***IAM user*** has:
