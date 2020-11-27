@@ -99,10 +99,10 @@ The data key can be used to encrypt the plain text data.
 
 ***Amazon Inspector*** is not under the IAM service. It's a tool that helps you to check if there are some security vulnerabilities. If can be also integrated with your development and deployment pipeline. This allow to make security tests in a more regular occurrence.
 
-Instead ***Amazon Cognito*** provides authentication, authorization and user management. It's not under IAM but contains a supersett of the functionality of web identify federation. 
+Instead ***Amazon Cognito*** provides authentication, authorization and user management. It's not under IAM but contains a superset of the functionality of web identify federation. 
 
 The users can sign-in directly into Cognito with username and password or use also a 3th party account (Google, Facebook, Amazon) if configurated from the AWS console. Cognito has two main components:
-* ***User Pool:*** userr directory;
+* ***User Pool:*** user directory;
 * ***Identity Pool:*** users can obtain temporary access to AWS services, similar to IAM Role.
 
-An Idenitty Pool is associated witht a User Pool. Amazon Cognito Sync is a separate module and allows to sync data accross web and mobile platforms.
+An Idenitty Pool is associated with a User Pool. Amazon Cognito Sync is a separate module and allows to sync data accross web and mobile platforms.
