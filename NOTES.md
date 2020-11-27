@@ -68,7 +68,7 @@ In AWS a ***IAM user*** has:
 
 The user credenials should never be stored or passed to an EC2 insance for security reasons.
 
-A user can also be part of a ***IAM Group***. Each component of the gruoup has the same policies that are associated with he gruop, plus the personal ones. 
+A user can also be part of a ***IAM Group***. Each component of the gruoup has the same policies that are associated with he gruop, plus the personal ones. A user can be part of multiple Groups (N-N relashionship).
 
 A best practive is to create multiple IAM Groups with different policies for the vaious kind of users and associate the users with the correspondings groups.
 
