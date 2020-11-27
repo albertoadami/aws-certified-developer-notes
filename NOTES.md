@@ -36,7 +36,7 @@ The REST APIs of the IAM service don't use the region in the URL because it's gl
 Not all the services are available in all the regions of the world. When you create your own infrastructure on AWS you should select a region in which operate that's closer to your application users and furthemore the region must contains all the services that you need for your application.
 
 ## AWS Identity and Access Management (IAM) <a name="iam"></a>
-Like said before IAM is hte AWS service used to manage the users and their roles and policies inside of AWS. In general the common use of IAM is to manage:
+Like said before IAM is the AWS service used to manage the users and their roles and policies inside of AWS. In general the common use of IAM is to manage:
 * Users;
 * Groups;
 * Roles;
