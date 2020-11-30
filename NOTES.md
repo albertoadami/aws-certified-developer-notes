@@ -44,7 +44,7 @@ Like said before IAM is the AWS service used to manage the users and their roles
 * API Keys;
 * Specify password policy.
 
-By default, when you create a new IAM user, it will have no-access to any AWS service (DENY-ALL). The access to the various AWS services are gicen to the IAM users using the ***IAM Policies***.
+By default, when you create a new IAM user, it will have no-access to any AWS service (DENY-ALL). The access to the various AWS services are given to the IAM users using the ***IAM Policies***.
 
 The best practive, when we create a new account, is to:
 1. Delete read access to root keys;
