@@ -2,6 +2,7 @@
 
 1. [The Basic of AWS](#introduction)
 2. [AWS Identity and Access Management (IAM)](#iam)
+3. [Elastic Compute Cloud (EC2)](#ec2)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -108,3 +109,69 @@ The users can sign-in directly into Cognito with username and password or use al
 * ***Identity Pool:*** users can obtain temporary access to AWS services, similar to IAM Role.
 
 An Idenitty Pool is associated with a User Pool. Amazon Cognito Sync is a separate module and allows to sync data accross web and mobile platforms.
+
+## Elastic Compute Cloud (EC2) <a name="ec2"></a>
+***Amazon Compute Cloud (EC2)*** provides scalable virtual servers in the cloud. An EC2 server is called an "instance" and supports Windows or Linux as Operating System. EC2 can be also configured with different instance types and size, that have also different prices.
+
+The EC2 instances can be commissionated and decomissionated "on-demand" for easily scalability and elasticity.
+
+An EC2 instance is composed of the following components:
+* Amazon Machine Image (AMI): operating system and settings;
+* Instance Type: hardware (CPU, RAM, network, etc..);
+* Network interface: IP adresses;
+* Storage: usually EBS (network storage).
+
+Each instance must be placed within a VPC and a subnet. EC2 instance need also to have a ***Security Group*** associated.
+
+To login inside an EC2 machine, AWS use an encrypted key paris with certificate.
+
+***Amazon Machine Image (AMI)*** is a pre-configured package (template) required to launch an EC2 instance. It includes:
+* Operating System;
+* Software pacakges;
+* Other required settings.
+
+AMI can be of different kind:
+* ***Communiy AMIs:*** free to use;
+* ***AWS Marketplace AMIs:*** pay to use;
+* ***My AMIs:*** custom AMIs, created by yourself.
+
+EC2 provides the following purchasing options:
+* ***On-demand:*** you can select any instance type and terminate it any time. It's the most expensive and most flexible option. You are charged only for when the instance is running;
+* ***Reserved Instances (RI):*** allows you to buy an instance for a set time period (one or three years). This give us some price discount over on-demeand, with this option you pay for the entire period, not for the time usage.
+* ***Spot Instances:*** is a way for you to "bid" on an instance type and pay only for the price. This allows Amazon to sell the unused instances with discount. An instance automatically terminate when the spot price is greater than your bid price.
+
+With auto assigning public IP you can configure the EC2 to be accessed outside of the VPC, you can access to it from your PC for example.
+
+By default all the EC2 instances have a private IP adress used for the communication inside the VPC. An instance can have also Elastic IP Addresses(EIP), that are static and public IPV4 addresses designed for cloud computing. Attacching an EIP to an instance, it will replace its default public IP adress.
+
+On EC2 configuration you can customize also the bootstrapping and the user data,  that's a step of EC2 in which you can put some custom scripts.
+
+During the creation process you can also configure the volumes. EBS are network attached storage, they can be attached/dettached to or from an EC2 insance.
+
+EBS are backed up into a snapshot, which can later be restored into an new EBS volume. The volumes created from an EBS snapshot must be initialized, it occurs the first time a storage block on the volume is read.
+
+EBS volume can be of different types:
+* ***General Purpose SSD:*** the default one;
+* ***Provisioned IOPS SSD:*** for IOPS perfomance applications;
+* ***Throughput Optimized HDD and cold HDD:*** cheaper but also less perfomances. Cannot be mounted as a boot volume;
+* ***EBS Magnetic:*** old generation. Low storage cost but also less perfomances.
+
+On EC2 you can add multiple volumes of different types during the configuration process.
+
+***Instance Store Volumes*** are virtual devices which hardware is phisically attached to the EC2 instance. Once the instance is stopped or shutdown, the data is erased. Not all types of EC2 instances can use Instance Store Volumes, for example EC2 micro doesn't support it.
+
+***Elastic File System (EFS)*** is a storage option for EC2 that allows for scalable storage option. It's capacity is elastic, it will increase/decrease when files are added/removed. 
+
+It's a separate AWS service and you need to configure a file system before. EFS can be accessed from multiple EC2 instances, you pay for the amount of data you are using. You can also use KMS to encrypt the disk data.
+
+To connect via ssh to the EC2 instance you need to use the .pem file (key paris). The command used to connect to the instance is like the following:
+
+```ssh -i "file.pem" ec2-user@public-ip-of-ec2-instance```
+
+You need to run also the chmod 400 to the pem file before to run the ssh command.
+
+***Elastic Load Balancer (ELB)*** are used to distribute traffic around multiple EC2 instances. The EC2 can be around multiple AZs. ELB can be configured to scale up and down the number of instances. ELB support two different kind of balancer: an Application Load Balancer (HTTP/HTTPS) or a Network Load Balancer (TCP).
+
+On EC2 the customer is responsible for managing the software level security, including Security Groups, Firewall, EBS encryption, SSL certificate to ELB. AWS instead is responsibile for the physical layer of security on EC2. 
+
+AWS provides also a set of commands to manipulate EC2 instances from the AWS CLI.
