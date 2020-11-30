@@ -99,7 +99,7 @@ The API Keys are only available when a new user is created. The access key is as
 ***AWS Key Management Service (KNS)*** is a managed service to create and control the encryption keys to encrypt your data. It's used to encrypt data inside AWS services.
 The data key can be used to encrypt the plain text data.
 
-***Amazon Inspector*** is not under the IAM service. It's a tool that helps you to check if there are some security vulnerabilities. If can be also integrated with your development and deployment pipeline. This allow to make security tests in a more regular occurrence.
+***Amazon Inspector*** is not under the IAM service. It's a tool that helps you to check if there are some security vulnerabilities. It can be also integrated with your development and deployment pipeline. This allow you to make security tests in a more regular occurrence.
 
 Instead ***Amazon Cognito*** provides authentication, authorization and user management. It's not under IAM but contains a superset of the functionality of web identify federation. 
 
