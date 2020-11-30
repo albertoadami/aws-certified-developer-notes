@@ -78,7 +78,7 @@ A best practive is to create multiple IAM Groups with different policies for the
 
 In AWS an instance can have only one role attached for time. The IAM role is configured with policies for access to the required services/components inside AWS.
 
-When you create a new role you have to select the AWS service for which add the policy versus other AWS services. After you successfully create the role, you need also to associate the rolo to an instance (an EC2 for example).
+When you create a new role you have to select the AWS service for which add the policy versus other AWS services. After you successfully create the role, you need also to associate the role to an instance (an EC2 for example).
 
 ***IAM Security Token Service (STS)*** allows you to create temporary security credentials that grant trusted users access to your AWS resources. These credentials are for short time usage (from some minutes to several hours).
 
