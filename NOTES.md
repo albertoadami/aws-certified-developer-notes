@@ -160,6 +160,18 @@ On EC2 you can add multiple volumes of different types during the configuration 
 
 ***Instance Store Volumes*** are virtual devices which hardware is phisically attached to the EC2 instance. Once the instance is stopped or shutdown, the data is erased. Not all types of EC2 instances can use Instance Store Volumes, for example EC2 micro doesn't support it.
 
-***Elastic File System (EFS)*** is a storage option for EC2 that allows for scalable storage option. It's capacity is elastic, it will increase/decrease when files are added/removed. It's a separate AWS service and you need to configure a file system before. EFS can be accessed from multiple EC2 instances, you pay for the amount of data you are using.
+***Elastic File System (EFS)*** is a storage option for EC2 that allows for scalable storage option. It's capacity is elastic, it will increase/decrease when files are added/removed. 
 
-You can also use KMS to encrypt the disk data.
+It's a separate AWS service and you need to configure a file system before. EFS can be accessed from multiple EC2 instances, you pay for the amount of data you are using. You can also use KMS to encrypt the disk data.
+
+To connect via ssh to the EC2 instance you need to use the .pem file (key paris). The command used to connect to the instance is like the following:
+
+```ssh -i "file.pem" ec2-user@public-ip-of-ec2-instance```
+
+You need to run also the chmod 400 to the pem file before to run the ssh command.
+
+***Elastic Load Balancer (ELB)*** are used to distribute traffic around multiple EC2 instances. The EC2 can be around multiple AZs. ELB can be configured to scale up and down the number of instances. ELB support two different kind of balancer: an Application Load Balancer (HTTP/HTTPS) or a Network Load Balancer (TCP).
+
+On EC2 the customer is responsible for managing the software level security, including Security Groups, Firewall, EBS encryption, SSL certificate to ELB. AWS instead is responsibile for the physical layer of security on EC2. 
+
+AWS provides also a set of commands to manipulate EC2 instances from the AWS CLI.
