@@ -3,6 +3,7 @@
 1. [The Basic of AWS](#introduction)
 2. [AWS Identity and Access Management (IAM)](#iam)
 3. [Elastic Compute Cloud (EC2)](#ec2)
+4. [Amazon Virtual Private Cloud (VPC) Fundamentals](#vpc)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -175,3 +176,40 @@ You need to run also the chmod 400 to the pem file before to run the ssh command
 On EC2 the customer is responsible for managing the software level security, including Security Groups, Firewall, EBS encryption, SSL certificate to ELB. AWS instead is responsibile for the physical layer of security on EC2. 
 
 AWS provides also a set of commands to manipulate EC2 instances from the AWS CLI.
+
+## Amazon Virtual Private Cloud (VPC) Fundamentals
+Virtual Private Cloud (VPC) enables you to launch AWS resources into a virtual network that you have defined. VPC represents an isolated part of AWS associated with your account.
+
+In the VPC you can define private and public ***subnets***. You can also extend on premise network to the cloud as if it was part of your network (VPN).
+
+When you define a new VPC you need to select the AWS region associated with it. A VPC spans multiple AZs within a region, in this way the VPC can be configured to be redundant. If you need also to have redundant resources inside multiple regions, you need to define multiple VPC (one for region).
+
+In the VPC creation process, as well as the region, you need to define the IPV4 CIDR, that is the range of IPs used inside the VPC. For example 172.31.0.0/16 contains all the IP adresses starting with 172.31.
+
+By default when you create an AWS account, if comes with a default VPC configured.
+
+Inside a VPC you can define one or more ***subnets*** that can span multiple AZs. For example you can define a Subnet1 with IPs 172.31.1.0/24 and Subnet2 with IPs 172.31.2.0/24.
+
+Inside your VPC you can have public and private subnets, public contains all the resources that are accessible from the public internet. The private subnet instead is not reachable from the internet, but can be accessed from the public subnet.
+
+To configure a public subnet, you need to attach an ***Internet Gateway (IGw)*** to the VPC. Without the IGW the instances are not available from the internet.
+
+***A Route Table*** contains a set of rules, called routes, that are used to determine where network traffic is directed. By default all traffic between he subnets inside a VPC is enabled.
+
+The IGw connection is a rule of the public subnet route table. Each subnet has a route table associated with it.
+
+AWS provides two kind of firewall rules:
+* ***NACL:*** applied on subnet level;
+* ***Security Group:*** applied on instance level.
+
+NACL protects all tthe allowed traffic inside a subnet, instead a security group is a firewall at instance level (EC2 for example). The security group rules are applied after the NACL controls.
+
+NACL rules are stateless, here you can define ALLOW and DENY rules. The rules are evaluated in order, NACL is an optional layer of security.
+
+On NACL you need to define both inbound and outbound rules, this because NACL is stateless.
+
+Usually ELB with auto scaling is used to improve the availability and fault tolerance inside a VPC. ELB performs health-check to understand if instances are up or down.
+
+***Nat Gateway*** is a component that allows to instances in privae subnets (not reachable from the internet) to make request to the internet for download pattches, SW, etc. The Nat Gateway must be inside a public subnet and also be part of the private subnet route table.
+
+A ***Bastian Host*** instead is an EC2 instance that lives in a public subnet and it's used as a "gateway" for traffic destined for private instances. It's a portal to access EC2 instances in the private subnet. This means that for connecting in the private instances we need to connect via ssh inside the Bastian Host and from that we're able to access the various instances in the private subnet.
