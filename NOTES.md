@@ -202,11 +202,7 @@ AWS provides two kind of firewall rules:
 * ***NACL:*** applied on subnet level;
 * ***Security Group:*** applied on instance level.
 
-NACL protects all tthe allowed traffic inside a subnet, instead a security group is a firewall at instance level (EC2 for example). The security group rules are applied after the NACL controls.
-
-NACL rules are stateless, here you can define ALLOW and DENY rules. The rules are evaluated in order, NACL is an optional layer of security.
-
-On NACL you need to define both inbound and outbound rules, this because NACL is stateless.
+NACL protects all the allowed traffic inside a subnet, instead a security group is a firewall at instance level (EC2 for example). The security group rules are applied after the NACL controls. NACL rules are stateless, here you can define ALLOW and DENY rules. The rules are evaluated in order, NACL is an optional layer of security. On NACL you need to define both inbound and outbound rules, this because NACL is stateless.
 
 Usually ELB with auto scaling is used to improve the availability and fault tolerance inside a VPC. ELB performs health-check to understand if instances are up or down.
 
