@@ -177,7 +177,7 @@ On EC2 the customer is responsible for managing the software level security, inc
 
 AWS provides also a set of commands to manipulate EC2 instances from the AWS CLI.
 
-## Amazon Virtual Private Cloud (VPC) Fundamentals
+## Amazon Virtual Private Cloud (VPC) Fundamentals <a name="vpc"></a>
 Virtual Private Cloud (VPC) enables you to launch AWS resources into a virtual network that you have defined. VPC represents an isolated part of AWS associated with your account.
 
 In the VPC you can define private and public ***subnets***. You can also extend on premise network to the cloud as if it was part of your network (VPN).
