@@ -4,6 +4,7 @@
 2. [AWS Identity and Access Management (IAM)](#iam)
 3. [Elastic Compute Cloud (EC2)](#ec2)
 4. [Amazon Virtual Private Cloud (VPC) Fundamentals](#vpc)
+5. [AWS Load Balancing](#load)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -209,3 +210,20 @@ Usually ELB with auto scaling is used to improve the availability and fault tole
 ***Nat Gateway*** is a component that allows to instances in privae subnets (not reachable from the internet) to make request to the internet for download pattches, SW, etc. The Nat Gateway must be inside a public subnet and also be part of the private subnet route table.
 
 A ***Bastian Host*** instead is an EC2 instance that lives in a public subnet and it's used as a "gateway" for traffic destined for private instances. It's a portal to access EC2 instances in the private subnet. This means that for connecting in the private instances we need to connect via ssh inside the Bastian Host and from that we're able to access the various instances in the private subnet.
+
+## AWS Load Balancing <a name="load"></a>
+AWS provides different types of Load Balancer:
+* ***Application Load Balancer:*** at http/https level;
+* ***Network Load Balancer:*** at UDP level;
+* ***Classic Load Balancer:*** the old generation.
+
+***Application Load Balancer*** make routing decisions at the application layer (http/https). You can configure rules for your listener that forward requests based on URL request. It supports routing request to multiple applications on a single EC2 instance.
+
+***Network Load Balancer*** instead works on UPD level (Transport layer).
+It can handle dynamic port mapping. It's able to handle milions of requests for second. It forwards reuqests without modifying the headers. It supports static IP adressess.
+
+Exists also the ***Classic Load Balancer***, that is the previous generation and it is used when you have EC2 instances in a classic network.
+
+The new generation of load balancers (Application and Network) supports dynamic ports. In a single EC2 instance can be running multiple containers (different ports).
+
+Dynamic ports are facilitated by ***Target Groups***. A Target Group tracks the list of ports that are accepting traffic on each instance and gives the laod balancer a way to distribuite traffic evently across ports. The new generaion of load balancers is ideal for handle containerized services (Docker, ECS).
