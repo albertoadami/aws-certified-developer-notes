@@ -211,6 +211,8 @@ Usually ELB with auto scaling is used to improve the availability and fault tole
 
 A ***Bastian Host*** instead is an EC2 instance that lives in a public subnet and it's used as a "gateway" for traffic destined for private instances. It's a portal to access EC2 instances in the private subnet. This means that for connecting in the private instances we need to connect via ssh inside the Bastian Host and from that we're able to access the various instances in the private subnet.
 
+A ***Bastian Host*** instead is an EC2 instance that lives in a public subnet and it's used as a "gateway" for traffic destined for private instances. It's a portal to access EC2 instances in the private subnet. This means that for connecting in the private instances we need to connect via ssh inside the Bastian Host and from that we're able to access the various instances in the private subnet.
+
 ## AWS Load Balancing <a name="load"></a>
 AWS provides different types of Load Balancer:
 * ***Application Load Balancer:*** at http/https level;
