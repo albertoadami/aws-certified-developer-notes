@@ -256,6 +256,12 @@ All AWS Lambda deal with similar conceps:
 
 When a Lambda function is called, it can be called synchronous or asynchronous. The handler is composed like `filename.functionname` and it's the function called by the events, we can think of it like the main method in a Java application. The handler receive `event` and `context` as input varialbes when invocated.
 
+This is an example of a Python handler:
+```
+def aws_lambda_handler(event, context):
+        return "My First AWS Lambda Function"
+```
+
 You can also configure some settings about the Lambda function like memory allocation, maximum duration, permission to other AWS services, VPC, environment variables (used by your code). We can also use encryption with KMS to encrypt the environment variables.
 
 ***Lambda Function Packages*** are zip packages with all code and dependencies required to your Lambda function when it runs. It includes your handler file, custom libs, any other application code,  3th party pacakge from providers like npm or pip.
