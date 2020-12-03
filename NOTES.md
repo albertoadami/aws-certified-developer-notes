@@ -249,10 +249,10 @@ When you create your Lambda function you need also to provide an AWS Role for th
 For example we can trigger a function from Cloudwatch one time a day. In the monitor section of Lambda you can see all the invocations and some other metrics about your functions.
 
 All AWS Lambda deal with similar conceps:
-* Handler files and functions: entry point for the invocation;
-* Events: incoming data passed to the function when triggered;
-* Context: a way to get runtime informations;
-* Logging and Exceptions: handled through Cloudwatch logs.
+* ***Handler files and functions:*** entry point for the invocation;
+* ***Events:*** incoming data passed to the function when triggered;
+* ***Context:*** a way to get runtime informations;
+* ***Logging and Exceptions:*** handled through Cloudwatch logs.
 
 When a Lambda function is called, it can be called synchronous or asynchronous. The handler is composed like `filename.functionname` and it's the function called by the events, we can think of it like the main method in a Java application.
 
