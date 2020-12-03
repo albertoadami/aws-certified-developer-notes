@@ -262,7 +262,7 @@ You can also configure some settings about the Lambda function like memory alloc
 
 Lambda allows you to handle multiple versions of functions with unique ARNS ($LATEST is the last version of a function). Exist also the concept of ***Aliases***, that are pointers to specific versions. Aliases can also be used to split traffic between Lambda versions.
 
-AWS Lambda is available also from the AWS CLI, you are able to create functions, inoke functions, add aliases, etc.
+AWS Lambda is available also from the AWS CLI, you are able to create functions, invoke functions, add aliases, etc.
 
 Lambda use cases are:
 * ***Data processing;***
