@@ -256,9 +256,9 @@ All AWS Lambda deal with similar conceps:
 
 When a Lambda function is called, it can be called synchronous or asynchronous. The handler is composed like `filename.functionname` and it's the function called by the events, we can think of it like the main method in a Java application. The handler receive `event` and `context` as input varialbes when invocated.
 
-You can also configure some setting about the Lambda function like memory allocation, maximum duration, permission to other AWS services, VPC, environment variables (used by your code). We can also use encryption with KMS to encrypt the environment variables.
+You can also configure some settings about the Lambda function like memory allocation, maximum duration, permission to other AWS services, VPC, environment variables (used by your code). We can also use encryption with KMS to encrypt the environment variables.
 
-***Lambda Function Packages*** are zip packages with all code and dependencies required yo your Lambda function when it runs. It includes your handler file, custom libs, any other application code,  3th party pacakge from providers like npm or pip.
+***Lambda Function Packages*** are zip packages with all code and dependencies required to your Lambda function when it runs. It includes your handler file, custom libs, any other application code,  3th party pacakge from providers like npm or pip.
 
 Lambda allows you to handle multiple versions of functions with unique ARNS ($LATEST is the last version of a function). Exist also the concept of ***Aliases***, that are pointers to specific versions. Aliases can also be used to split traffic between Lambda versions.
 
