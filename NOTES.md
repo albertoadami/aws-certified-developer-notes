@@ -254,7 +254,7 @@ All AWS Lambda deal with similar conceps:
 * ***Context:*** a way to get runtime informations;
 * ***Logging and Exceptions:*** handled through Cloudwatch logs.
 
-When a Lambda function is called, it can be called synchronous or asynchronous. The handler is composed like `filename.functionname` and it's the function called by the events, we can think of it like the main method in a Java application.
+When a Lambda function is called, it can be called synchronous or asynchronous. The handler is composed like `filename.functionname` and it's the function called by the events, we can think of it like the main method in a Java application. The handler receive `event` and `context` as input varialbes when invocated.
 
 You can also configure some setting about the Lambda function like memory allocation, maximum duration, permission to other AWS services, VPC, environment variables (used by your code). We can also use encryption with KMS to encrypt the environment variables.
 
