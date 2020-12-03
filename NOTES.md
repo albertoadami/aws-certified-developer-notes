@@ -5,6 +5,7 @@
 3. [Elastic Compute Cloud (EC2)](#ec2)
 4. [Amazon Virtual Private Cloud (VPC) Fundamentals](#vpc)
 5. [AWS Load Balancing](#load)
+6. [AWS Lambda](#lambda)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -227,3 +228,45 @@ Exists also the ***Classic Load Balancer***, that is the previous generation and
 The new generation of load balancers (Application and Network) supports dynamic ports. In a single EC2 instance can be running multiple containers (different ports).
 
 Dynamic ports are facilitated by ***Target Groups***. A Target Group tracks the list of ports that are accepting traffic on each instance and gives the laod balancer a way to distribuite traffic evently across ports. The new generaion of load balancers is ideal for handle containerized services (Docker, ECS).
+
+## AWS Lambda <a name="lambda"></a>
+***AWS Lambda*** runs your code without needs to handle any server infrastructure. You need only to upload the function and AWS handle all the stuff for you.
+
+Lambda is a serverless computing platform, you pay only for the computing time that you use. Lambda are composed of two main concepts:
+* ***Lambda Functions:*** application code;
+* ***Lambda Function Packages:*** dependencies that your code requires (libs, configurations).
+
+Lambda supports Node.js, Java, C#, Python, Go as programming languages and can be integrated with other AWS services like Cloudwatch, API Gateway, KMS, etc.
+
+When you create your Lambda function you need also to provide an AWS Role for the permissions versus other AWS services. AWS Lambda are triggered by events, that can be:
+* HTTP API request through API Gateway;
+* Cloudwatch events;
+* S3 file uploads;
+* DynamoDB streams change;
+* Direct invocations through AWS CLI or SDKs;
+* Many other event sources.
+
+For example we can trigger a function from Cloudwatch one time a day. In the monitor section of Lambda you can see all the invocations and some other metrics about your functions.
+
+All AWS Lambda deal with similar conceps:
+* Handler files and functions: entry point for the invocation;
+* Events: incoming data passed to the function when triggered;
+* Context: a way to get runtime informations;
+* Logging and Exceptions: handled through Cloudwatch logs.
+
+When a Lambda function is called, it can be called synchronous or asynchronous. The handler is composed like `filename.functionname` and it's the function called by the events, we can think of it like the main method in a Java application.
+
+You can also configure some setting about the Lambda function like memory allocation, maximum duration, permission to other AWS services, VPC, environment variables (used by your code). We can also use encryption with KMS to encrypt the environment variables.
+
+***Lambda Function Packages*** are zip packages with all code and dependencies required yo your Lambda function when it runs. It includes your handler file, custom libs, any other application code,  3th party pacakge from providers like npm or pip.
+
+Lambda allows you to handle multiple versions of functions with unique ARNS ($LATEST is the last version of a function). Exist also the concept of ***Aliases***, that are pointers to specific versions. Aliases can also be used to split traffic between Lambda versions.
+
+AWS Lambda is available also from the AWS CLI, you are able to create functions, inoke functions, add aliases, etc.
+
+Lambda use cases are:
+* ***Data processing;***
+* ***Real time file procession;***
+* ***Real time stream processing;***
+* ***ETL;***
+* ***IOT Backends.***
