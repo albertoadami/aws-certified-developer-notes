@@ -6,6 +6,7 @@
 4. [Amazon Virtual Private Cloud (VPC) Fundamentals](#vpc)
 5. [AWS Load Balancing](#load)
 6. [AWS Lambda](#lambda)
+7. [AWS Elastic Container Service](#container)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -276,3 +277,26 @@ Lambda use cases are:
 * ***Real time stream processing;***
 * ***ETL;***
 * ***IOT Backends.***
+
+## AWS Elastic Container Service <a name="container"></a>
+***Elastic Container Service (ECS)*** is a Docker compatible service provided by AWS. It allows to easy deploy container on EC2 instances. It's used for deploy distribuited applications and microservices. ECS allows you to start/stop, manage, monitor and scale containers independently.
+
+***AWS Fargate*** is an AWS service that allows you to use containers as the foundamental application building blocks while AWS manages the EC2 instances for you.
+
+***Dockerfile*** is a text file containing all the specifies of all the components that are included in the containers. With the Dockerfile you can build a ***Docker Image*** that contains all the system and software that you need. The Docker Images are saved inside a ***Docker Registry***, for do that AWS provides the ***Elastic Container Registry (ECR)*** service.
+
+An ***ECS Task Definition*** is a JSON formatted text that contains "blueprint" for your application, including:
+* The container images to use;
+* The Docker Registry the image is located in;
+* Which port should be opened on the containers;
+* The data volumes to use.
+
+The ***ECS Agent*** runs on each EC2 instance inside the ECS cluster. It's responsible for:
+1. Communiucate informations about the instances to ECS (tasks running, resources utilization);
+2. Start/stop tasks.
+
+You can configure the VPC and the subnet when the containers will run, otherwise ECS create a VPC for you. You select a "custom" VPC if you need to reach some other resources inside that.
+
+You need also to configure an IAM Role for your ECS Tasks, if you are using for example an S3 bucket you need Read Access to that. Usually you need also to have access to ECR if you are deploying some custom images.
+
+ECS also can be configured automatically to use also a Load Balancer to scale the application.
