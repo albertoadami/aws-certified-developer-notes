@@ -7,6 +7,7 @@
 5. [AWS Load Balancing](#load)
 6. [AWS Lambda](#lambda)
 7. [AWS Elastic Container Service](#container)
+8. [Amazon S3](#s3)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -300,3 +301,41 @@ You can configure the VPC and the subnet when the containers will run, otherwise
 You need also to configure an IAM Role for your ECS Tasks, if you are using for example an S3 bucket you need Read Access to that. Usually you need also to have access to ECR if you are deploying some custom images.
 
 ECS also can be configured automatically to use also a Load Balancer to scale the application.
+
+## Amazon S3 <a name="s3"></a>
+***AWS Simple Storage Service (S3)*** it is the AWS service to handle files. ***Buckets*** are the main storage container of S3. You can create sub-spaces called ***Folders***.
+
+In the creatin process you need to select the region in which save the data. The bucket name must be unique accross all AWS Cloud (not only inside your account). After a new S3 bucket is created, the ownership cannot be trasferred.
+
+***S3 Objects*** are static files and metadata information. They can be saved on the bucket directly, or inside some folders of the bucket. S3 has a flat structure, there is no hierarchy like you would see in a typical file system.
+
+The maximum dimension of file is 5TB. On your bucket you can have multiple versions of files. You can also configure S3 to use encryption for the files.
+
+You can also configure ***S3 Event Notifications***, that allows you to setup automated communications between S3 and other AWS services (AWS Lambda for example).
+
+***Storage Gateway*** is an AWS service that connects local data center appliances to cloud storace such as S3. You can use it with ***Gateway Cached Volumes*** or ***Gateway Stored Volumes***. The first one is a cache version of the S3 bucket. The second one instead stores all data on-premises and the Gateway periodically takes snapshots of the data and store them on S3.
+
+***Snowball*** instead is a Petabyte scale data transport solution. It's used to quickly move big amounts of data into and out of AWS cloud. ***AWS Import/Export*** gives the ability to take on premises data and phisically mail to AWS.
+
+On S3 you can also configure the permissions. By default all the buckets are private (only the owner has access). The owner can grant access to other people through ***S3 resource based policies*** or ***IAM Policy***. On the IAM Policy you can specify access only to some S3 buckets. S3 ACL can be used to have different levels of permissions in different buckets and objects. The bucket policies instead are attached directly to the bucket.
+
+For the encryption you can configure S3 to have client-side encryption (SSL) or to have encryption at REST (S3 encrypt objects for you). Encryption at REST can be configured to use AES-256 or KMS encryption.
+
+***S3 Versioning*** is a feature to manage and store all old/new/deleted versions of objects (disabled by default). When enabled all object with existing versions mantain older versions.
+
+Each version has a different `versionId`, using the AWS CLI you can see the different `versionId` for the same file to retrive a specific version of it. When you download an object without a `versionId` you will get the latest version. If two versions contains the same content of the file, the two `versionId` instead are different.
+
+Each S3 bucket has a ***Storage Class***. Each storage class has different cost, object availability, durability and frequency of access. The list of actual sttorage classes are:
+* ***Standard:*** classic, for frequently access;
+* ***Standard-IA:*** for infrequently access;
+* ***One-Zone-IA:*** infrequently access and only one AZ;
+* ***Reduced Redundacny:*** for frequently access without redundancy;
+* ***Glacier:*** for long therm storage, the retrive can take several hours.
+
+You cannot configure a bucket to be Glacier directly, but only through lifecycle management.  A ***Lifecycle Policy*** is the process to transit S3 object from a bucket to the Glacier. It's a set of rules that automate the migration of objects to different storage clas (disalbed by default).
+
+The lifecycle policy can be used with old file versions, to put old versions in a glacier for example. When you add  new rule you need to select if apply that to the current file version or to the previous versions. We can also configure the automatic deletion of files after some period from the creation date. 
+
+***S3 Static Web Hosting*** provides an option for a low cost, highly reliable hosting service for static websites. When configuring your static ifle you can specify an index file and an error file. You can also configure a custom domain using AWS Route53, instead to use the default AWS domain.
+
+To setup the bucket as a site hosting you need to go to the properties section inside AWS console. To make the site available from the internet we need also to set all the files as public. You can also configure CORS on your hosting site.
