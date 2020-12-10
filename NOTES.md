@@ -306,7 +306,7 @@ ECS also can be configured automatically to use also a Load Balancer to scale th
 ## Amazon S3 <a name="s3"></a>
 ***AWS Simple Storage Service (S3)*** it is the AWS service to handle files. ***Buckets*** are the main storage container of S3. You can create sub-spaces called ***Folders***.
 
-In the creatin process you need to select the region in which save the data. The bucket name must be unique accross all AWS Cloud (not only inside your account). After a new S3 bucket is created, the ownership cannot be trasferred.
+In the creation process you need to select the region in which save the data. The bucket name must be unique accross all AWS Cloud (not only inside your account). After a new S3 bucket is created, the ownership cannot be trasferred.
 
 ***S3 Objects*** are static files and metadata information. They can be saved on the bucket directly, or inside some folders of the bucket. S3 has a flat structure, there is no hierarchy like you would see in a typical file system.
 
@@ -333,11 +333,11 @@ Each S3 bucket has a ***Storage Class***. Each storage class has different cost,
 * ***Reduced Redundacny:*** for frequently access without redundancy;
 * ***Glacier:*** for long therm storage, the retrive can take several hours.
 
-You cannot configure a bucket to be Glacier directly, but only through lifecycle management.  A ***Lifecycle Policy*** is the process to transit S3 object from a bucket to the Glacier. It's a set of rules that automate the migration of objects to different storage clas (disalbed by default).
+You cannot configure a bucket to be Glacier directly, but only through lifecycle management.  A ***Lifecycle Policy*** is the process to transit S3 object from a bucket to the Glacier. It's a set of rules that automate the migration of objects to different storage classess (disalbed by default).
 
 The lifecycle policy can be used with old file versions, to put old versions in a glacier for example. When you add  new rule you need to select if apply that to the current file version or to the previous versions. We can also configure the automatic deletion of files after some period from the creation date. 
 
-***S3 Static Web Hosting*** provides an option for a low cost, highly reliable hosting service for static websites. When configuring your static ifle you can specify an index file and an error file. You can also configure a custom domain using AWS Route53, instead to use the default AWS domain.
+***S3 Static Web Hosting*** provides an option for a low cost, highly reliable hosting service for static websites. When configuring your static site you can specify an index file and an error file. You can also configure a custom domain using AWS Route53, instead to use the default AWS domain.
 
 To setup the bucket as a site hosting you need to go to the properties section inside AWS console. To make the site available from the internet we need also to set all the files as public. You can also configure CORS on your hosting site.
 
