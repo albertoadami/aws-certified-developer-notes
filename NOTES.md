@@ -8,6 +8,7 @@
 6. [AWS Lambda](#lambda)
 7. [AWS Elastic Container Service](#container)
 8. [Amazon S3](#s3)
+9. [AWS CloudFront](#cloudfront)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -339,3 +340,8 @@ The lifecycle policy can be used with old file versions, to put old versions in 
 ***S3 Static Web Hosting*** provides an option for a low cost, highly reliable hosting service for static websites. When configuring your static ifle you can specify an index file and an error file. You can also configure a custom domain using AWS Route53, instead to use the default AWS domain.
 
 To setup the bucket as a site hosting you need to go to the properties section inside AWS console. To make the site available from the internet we need also to set all the files as public. You can also configure CORS on your hosting site.
+
+## AWS CloudFront <a name="cloudfront"></a>
+***AWS CloudFront*** is a global cloud ***Content Delivery Network (CDN)***. It delivers content from an "origin" location to an "edge" location. An edge location allows the caching of static objects from the origin location. The origin can be a S3 bucket or an ELB that distributes requests accross EC2 instances.
+
+The edge locations are accross the entire world (about 50), when a user make a request the closest location is selected. To configure the CloudFront from the AWS Console you need a SSL certificate.
