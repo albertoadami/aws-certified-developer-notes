@@ -10,7 +10,7 @@
 8. [Amazon S3](#s3)
 9. [AWS CloudFront](#cloudfront)
 10. [DynamoDB](#dynamodb)
-
+11. [Other AWS Database Services](#databases)
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
 * AWS Console: web interface;
@@ -371,3 +371,13 @@ If a request exceed the read or write capacity the request is rejected, this pro
 We can configure TTL to delete items from the table when they expire some value from a selected attribute.
 
 DynamoDB offers the possibility to enable the ***Streams*** feature. Some type of table event can "trigger" a Lambda function. When a new item is added/deleted or updated a new stream record is written, the new stream record is written, the new stream record triggers the Lambda. The Lambda function reads the stream record and sends it to CloudWatch Logs.
+
+## Other AWS Database Services <a name="databases"></a>
+***RDS*** is a fully managed relational database service on AWS. You can crete databases without having access to the physical instances. It supports MySQL, Oracle, MariaDB, PostgreSQL, SQL Server and Amazon Aurora. RDS has the ability to provision/resize the hardware on demand for scaling.
+
+When you configure your database you can select the instance class hardware. You can also configure automatic backup of your database. RDS supports the encryption of your databases and snapshots using KMS. For each RDS instance an unique key encrypts all the data. You can configure the encryption only during the creation process of the database.
+
+***Redshift*** is the AWS service that provides petabyte scale data. It's fully managed and scalable, generally it is used for big data and analytics applications and it can be integrated with the most popular business intelligence applications.
+
+
+***Elasticache*** is a fully managed in-memory cache engine used to improve database performance by caching results of queries that are made to database. Elasticache supports Redis and MemCached as cluster engine. You can configure your cluster to use TTL to delete the expired keys after some time (from configuration).
