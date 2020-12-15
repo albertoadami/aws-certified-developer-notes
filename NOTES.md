@@ -9,7 +9,8 @@
 7. [AWS Elastic Container Service](#container)
 8. [Amazon S3](#s3)
 9. [AWS CloudFront](#cloudfront)
-
+10. [DynamoDB](#dynamodb)
+11. [Other AWS Database Services](#databases)
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
 * AWS Console: web interface;
@@ -345,3 +346,38 @@ To setup the bucket as a site hosting you need to go to the properties section i
 ***AWS CloudFront*** is a global cloud ***Content Delivery Network (CDN)***. It delivers content from an "origin" location to an "edge" location. An edge location allows the caching of static objects from the origin location. The origin can be a S3 bucket or an ELB that distributes requests accross EC2 instances.
 
 The edge locations are accross the entire world (about 50), when a user make a request the closest location is selected. To configure the CloudFront from the AWS Console you need a SSL certificate.
+
+## DynamoDB <a name="dynamodb"></a>
+***DynamoDB*** is a fully management NO-SQL database, it provides fast and consistent performances. From the AWS Console you can create directly the tables.
+
+Each table has a partition key and you can also configure the sort key. DynamoDB uses the partition key to determine the partition data will be stored in. The primary key identify each item, it can be the partition key or partition key plus sort key.
+
+Each DynamoDB item is formed by a group of attributes in JSON format. Each item can contains different fields, except the primary key that needs to be provided.
+
+DynamoDB stores data in partitions that are SSD allocations of storage for the table and automatically replicated accross multiple AZs. To retrive items you can use the ***get item*** to get a specific item using the primary key or a query. You can also use a ***BatchGetItems*** to read up to 100 items from one or more tables. In the query you can also specify the sort key to order the items. Exists also the ***Scan*** operation to retrive all the items from a table.
+
+In DynamoDB secondary indexes allow efficient queries of non-primary key attributes. A single secondary index is associated with a single table. Each secondary index acts as another sort key. They need to be created at the creation table phase.
+
+A DynamoDB ***Global Secondary Index*** is a way to query the information using a different partition and sort key. You cannot do strong consistency read with secondary indexes.
+
+The ***ProvisionedThroughputExceedException*** is an exception that occurrs when the capacity of the table is insufficient to support the actual read/write requests. You can configure DynamoDB to use the auto-scaling feature, in this way after the cpu utilization reach some value, the read/write capacity are scaled up. Under the hood is used CloudWatch alarms to invoke the auto scaling. Auto scaling adjust the capacity in up and down during the day.
+
+You can also use the ***On-Demand*** feature to have thousands of request/second without the needs to configure auto scaling. Using On-Demand the bill is managed automatically, you pay for what you use. You can switch to auto scaling sometime after the creation using On-Demand.
+
+***DAX*** is a cache service for DynamoDB, it delivers fast response times for accessing eventually consistent data. It's a good use case if you need high read performance. DAX cluster runs inside a VPC, you can configure the dimensions of nodes and cluster size. You also need to configure a role to the Cluster.
+
+If a request exceed the read or write capacity the request is rejected, this process is called ***throttling***. If the application doesn't retry there can be a data loss. 
+
+We can configure TTL to delete items from the table when they expire some value from a selected attribute.
+
+DynamoDB offers the possibility to enable the ***Streams*** feature. Some type of table event can "trigger" a Lambda function. When a new item is added/deleted or updated a new stream record is written, the new stream record is written, the new stream record triggers the Lambda. The Lambda function reads the stream record and sends it to CloudWatch Logs.
+
+## Other AWS Database Services <a name="databases"></a>
+***RDS*** is a fully managed relational database service on AWS. You can crete databases without having access to the physical instances. It supports MySQL, Oracle, MariaDB, PostgreSQL, SQL Server and Amazon Aurora. RDS has the ability to provision/resize the hardware on demand for scaling.
+
+When you configure your database you can select the instance class hardware. You can also configure automatic backup of your database. RDS supports the encryption of your databases and snapshots using KMS. For each RDS instance an unique key encrypts all the data. You can configure the encryption only during the creation process of the database.
+
+***Redshift*** is the AWS service that provides petabyte scale data. It's fully managed and scalable, generally it is used for big data and analytics applications and it can be integrated with the most popular business intelligence applications.
+
+
+***Elasticache*** is a fully managed in-memory cache engine used to improve database performance by caching results of queries that are made to database. Elasticache supports Redis and MemCached as cluster engine. You can configure your cluster to use TTL to delete the expired keys after some time (from configuration).
