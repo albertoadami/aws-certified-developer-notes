@@ -348,7 +348,7 @@ To setup the bucket as a site hosting you need to go to the properties section i
 The edge locations are accross the entire world (about 50), when a user make a request the closest location is selected. To configure the CloudFront from the AWS Console you need a SSL certificate.
 
 ## DynamoDB <a name="dynamodb"></a>
-***DynamoDB*** is a fully management NOSQL database. It provides fast and consistent performances. From the AWS Console you can create directly the tables.
+***DynamoDB*** is a fully management NO-SQL database, it provides fast and consistent performances. From the AWS Console you can create directly the tables.
 
 Each table has a partition key and you can also configure the sort key. DynamoDB uses the partition key to determine the partition data will be stored in. The primary key identify each item, it can be the partition key or partition key plus sort key.
 
@@ -364,7 +364,7 @@ The ***ProvisionedThroughputExceedException*** is an exception that occurrs when
 
 You can also use the ***On-Demand*** feature to have thousands of request/second without the needs to configure auto scaling. Using On-Demand the bill is managed automatically, you pay for what you use. You can switch to auto scaling sometime after the creation using On-Demand.
 
-***DAX*** is a cache service for DynamoDB, it delivers fast response times for accessing eventually consistent data. It's a good use case if you need high read performance. DAX cluster runs inside a VPC, you can configure the dimensions of nodes and cluster side. You also need to configure a role to the Cluster.
+***DAX*** is a cache service for DynamoDB, it delivers fast response times for accessing eventually consistent data. It's a good use case if you need high read performance. DAX cluster runs inside a VPC, you can configure the dimensions of nodes and cluster size. You also need to configure a role to the Cluster.
 
 If a request exceed the read or write capacity the request is rejected, this process is called ***throttling***. If the application doesn't retry there can be a data loss. 
 
