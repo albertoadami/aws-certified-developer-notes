@@ -11,6 +11,7 @@
 9. [AWS CloudFront](#cloudfront)
 10. [DynamoDB](#dynamodb)
 11. [Other AWS Database Services](#databases)
+12. [Amazon Simple Notification Service (SNS)](#sns)
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
 * AWS Console: web interface;
@@ -381,3 +382,21 @@ When you configure your database you can select the instance class hardware. You
 
 
 ***Elasticache*** is a fully managed in-memory cache engine used to improve database performance by caching results of queries that are made to database. Elasticache supports Redis and MemCached as cluster engine. You can configure your cluster to use TTL to delete the expired keys after some time (from configuration).
+
+## Amazon Simple Notification Service (SNS) <a name="sns"></a>
+***Simple Notification Service (SNS)*** is the notification service inside AWS, it's a fully managed service for pub/sub messagging and mobile notifications. It allows you to send SMS/email or push notifications to a variety of devices. SNS coordinates and manages the sending and delivery of messagges to specific endpoints.
+
+We can use SNS to receive some notifications when some events occurs on AWS. With CloudWatch and SNS you can create your monitoring solutions that can notify issues, EC2 instances that go down, etc.
+
+SNS is composed of the following components:
+* ***Topic:*** group of subscriptions that you send messagge to;
+* ***Subscription:*** an endpoint that a messagge is sent to (SMS, email, push, http, etc);
+* ***Publisher:*** the entity that triggers the sending of a message (AWS CLI, CloudWatch, etc).
+
+***SNS Access Control Policy*** grants access to your topics from other AWS accounts. You can configure it to grant access to some AWS services to publish to the topics. For some services like EC2 or Lambda you need to configure an IAM Role instead.
+
+***SNS messagges*** are tipically JSON formatted key pairs, it allows to developer to grab messagge data and parse it. The messagge content depends on the subscriber type.
+
+***SNS Mobile Push*** allows you to send notifications directly to apps on mobile devices. You can integrate with different providers like Google Cloud, Apple Push Notification Service, etc. 
+
+SNS also provides REST API to ingrate with SNS functionality. Exists also a series of API Action to be used from the AWS CLI.
