@@ -12,6 +12,9 @@
 10. [DynamoDB](#dynamodb)
 11. [Other AWS Database Services](#databases)
 12. [Amazon Simple Notification Service (SNS)](#sns)
+13. [Amazon Simple Queue Service (SQS)](#sqs)
+14. [Amazon Simple Workflow Service (SWF)](#swf)
+
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
 * AWS Console: web interface;
@@ -400,3 +403,36 @@ SNS is composed of the following components:
 ***SNS Mobile Push*** allows you to send notifications directly to apps on mobile devices. You can integrate with different providers like Google Cloud, Apple Push Notification Service, etc. 
 
 SNS also provides REST API to ingrate with SNS functionality. Exists also a series of API Action to be used from the AWS CLI.
+
+## Amazon Simple Queue Service (SQS) <a name="sqs"></a>
+***Simple Queue Service (SQS)*** allows for highly available and decoupled application architecture. SQS provides the ability to have hosted/highly available queues that can be used to send and receive messagges being sent between ***Producers*** and ***Consumers***. This allows for create decoupled applications.
+
+The messagges are retrived using ***polling***. There two kinds of polling: ***Long Polling*** (1-20 seconds) or ***Short Polling***. SQS offers also two types of queues: ***Standard Queue*** or ***FIFO Queue***. SQS is redundant and highly available, it allows also to encrypt data using KMS.
+
+SQL uses the concepts of ***Prooducer*** and ***Consumer***.
+
+A ***SQS Producer*** is any application, service or other component that produce SQS messagges and sent them to a SQS Queue (AWS CLI or AWS Lambda for example).
+
+A ***SQS Consumer*** is any application, service or other component that process SQS messagges, they are also responsible for deleting messages from the queue. An exmaple of Consumer can be a Lambda function.
+
+
+***SQS Resource Based Access Control Policies*** grant access to your queues from other AWS account. You can use also for grant access to some AWS services to publish to your queue. For some services like EC2 or Lambda you need to use an IAM Role to give the permission instead.
+
+The act of receiving messagges from a queue is called ***Polling***. By default is used the ***Short Polling***. Using the ***Long Polling*** allows to your consumers to wait for messagges to become available in the queue. Generally the long polling is cheaper because you are making fewer requests and connections.
+
+***SQS Messagges*** are text information created by your application and sent to SQS. The messagges can be up to 356KB and can be plain text or also XML or JSON formatted. You can configure the ***DelaySeconds***, that is the lenght of time that the queue will wait before initially placing the message in the queue.
+
+Like for other AWS services SQS provides a list of ***API Actions*** to use for interact with SQS.
+
+## Amazon Simple Workflow Service (SWF) <a name="swf"></a>
+***Simple Workflow (SWF)*** coordinates and manages the execution of activities, it manages a specific job from start to finish while still allowing for distributed/decoupled architecture. It allows to a developer to implement distributed, asynchronous applications as a workflow.
+
+A ***Workflow*** coordinates and manages the execution of activities that can be run async across multiple computing devices. SWF guarantees the order in which tasks are executed. SWF has te following components:
+* ***Workflows:*** sequence of steps required to perform a specific task (also know as ***Decider***);
+* ***Activities:*** single step in the workflow;
+* ***Tasks:*** what interacts with the worker. Can be of two different kinds:
+    1. ***Activity Task:*** tells a worker to perform a function;
+    2. ***Decision Task:*** tells the decider the state of the workflow execution which allow the decider to determine the next activity;
+* ***Workers:*** they receive a taks and take action on it.
+
+The Worker can be for example an EC2 instance or also a physical person, but for support human interaction you need to build an entire application on it.
