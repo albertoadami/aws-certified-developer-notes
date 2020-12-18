@@ -14,6 +14,10 @@
 12. [Amazon Simple Notification Service (SNS)](#sns)
 13. [Amazon Simple Queue Service (SQS)](#sqs)
 14. [Amazon Simple Workflow Service (SWF)](#swf)
+15. [AWS Step Function](#step)
+16. [Api Gateway](#api)
+17. [CloudWatch](#cloudwatch)
+18. [CloudFormation](#cloudformatiom)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -436,3 +440,41 @@ A ***Workflow*** coordinates and manages the execution of activities that can be
 * ***Workers:*** they receive a taks and take action on it.
 
 The Worker can be for example an EC2 instance or also a physical person, but for support human interaction you need to build an entire application on it.
+
+## AWS Step Function <a name="step"></a>
+***AWS Step Function*** is a fully managed service to coordinate components of your applications through individual steps. It provides visual workflows and tools that help you to coordiante componenets of your distributed applications. 
+
+Step Functions provides the following components:
+* ***Tasks:*** when you need to do something in your step function;
+* ***Step Machines:*** main concept of step function. It represents the step function UI defined using JSON.
+
+Each different state can have a different type. A ***Task*** can be an activity or a Lambda function. An activity is a program that takes some input and responds using step Functions API actions. The Lambda function can be easily integrated with steps functions. Each state inside a state machine makes decisions based on input, performs actions and passes output to other states.
+
+## Api Gateway <a name="api"></a>
+***Api Gateway*** is a fully managed service that allows you to create and manage your own APIs for your application. It acts like a "front-door" for your application. It allows you to deploy your APIs to a different environment and each environment can have different configurations.
+
+With Api Gateway you can create and work on multiple versions of an API, you can also rollback to some previous version. You can configure also a max request allowed before throttling. 
+
+***Api Gateway Resources*** are logical entities that can be accessed via resource path. They are used to expose resources. When create a new resource you can also enable the CORS feature. Each Resource has an http method associated with it, we can associate the resource and method with a Lambda function, or an http call to get the response.
+
+***Deployments*** are snapshot of the APIs resources and methods and must be associated with a stage in order to make the APIs available.
+
+Api Gateway will cache API responses so that duplicate API requests do not have to hit your backend. You can also configure a TTL for your API responses. We can enable CloudWatch to monitor Api Gateway activity and usage, also the metrics can be monitored.
+
+## CloudWatch <a name="cloudwatch"></a>
+***CloudWatch*** is an AWS service used to monitor other AWS services like EC2, S3 and ELB. You can monitor your environment by configure ***metrics***, which are specific to each AWS service or resource.  There are two kinds of monitoring:
+* ***Basic:*** data available in 5 minute periods;
+* ***Detailed:*** data available in 1 minute periods.
+
+You can use CloudWatch Alarms to trigger alerts or some other AWS service integration, auto-scaling is performed using CloudWatch Alarms for example. You can also see the logs of various services if configured correcly.
+
+## CloudFormation <a name="cloudformation"></a>
+***CloudFormation*** allows you to turn infrastructure into code. You can describe your application infrastructure using JSON or YAML. You can use the template to deploy copies of the architecture to other AWS regions and also other AWS accounts.
+
+You can use the CloudFormation service to deploy the ***CloudFormation Template*** inside a ***CloudFormation Stack***. The Stacks are collection of AWS resources that you can manage toghether as one unit. You can manage the template in a repository to see all the history and to rollback to some previous version.
+
+CloudFormation supports a variety of AWS resources. Resource type identifiers follow the format of `AWS::product-name::data-type-name`, for example `AWS::EC2::Instance`. Each resource has also its own properties, you can also use ***Resource Attributes*** to control additional relationships and behaviours of your resources (`DependsOn` for example).
+
+With CloudFormation you can create, update or delete a group of AWS resources by creating, updating or deleting a corresponding stack. You can create separate stacks to isolate logically parts of your applications. If some resource cannot be created, CloudFront will rollback the Stack and automatically delete any resources that were created.
+
+***CloudFormation Intrinsic Functions*** are provided by CloudFormation to help manage your stacks. You can use these functions to assign values to different CloudFormation properties that are only available at or after runtime. For example `Fn::GetAtt[InstanceName, Prop]` return the value of an attribute from a resource, it can be used to get the name or ARN of other resources for example.
