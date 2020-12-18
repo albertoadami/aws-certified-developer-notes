@@ -407,7 +407,7 @@ SNS also provides REST API to ingrate with SNS functionality. Exists also a seri
 ## Amazon Simple Queue Service (SQS) <a name="sqs"></a>
 ***Simple Queue Service (SQS)*** allows for highly available and decoupled application architecture. SQS provides the ability to have hosted/highly available queues that can be used to send and receive messagges being sent between ***Producers*** and ***Consumers***. This allows for create decoupled applications.
 
-The messagges are retrived using ***polling***. There two kinds of polling: ***Long Polling*** (1-20 seconds) or ***Short Polling***. SQS offers also two types of queues: ***Standard Queue*** or ***FIFO Queue***. SQS is redundant and highly available, it allows also to encrypt data using KMS.
+The messagges are retrived using ***polling***. There are two kinds of polling: ***Long Polling*** (1-20 seconds) or ***Short Polling***. SQS offers also two types of queues: ***Standard Queue*** or ***FIFO Queue***. SQS is redundant and highly available, it allows also to encrypt data using KMS.
 
 SQL uses the concepts of ***Prooducer*** and ***Consumer***.
 
@@ -420,7 +420,7 @@ A ***SQS Consumer*** is any application, service or other component that process
 
 The act of receiving messagges from a queue is called ***Polling***. By default is used the ***Short Polling***. Using the ***Long Polling*** allows to your consumers to wait for messagges to become available in the queue. Generally the long polling is cheaper because you are making fewer requests and connections.
 
-***SQS Messagges*** are text information created by your application and sent to SQS. The messagges can be up to 356KB and can be plain text or also XML or JSON formatted. You can configure the ***DelaySeconds***, that is the lenght of time that the queue will wait before initially placing the message in the queue.
+***SQS Messagges*** are text information created by your application and sent to SQS. The messagges can be up to 256KB and can be plain text or also XML or JSON formatted. You can configure the ***DelaySeconds***, that is the lenght of time that the queue will wait before initially placing the message in the queue.
 
 Like for other AWS services SQS provides a list of ***API Actions*** to use for interact with SQS.
 
