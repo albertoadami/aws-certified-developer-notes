@@ -416,7 +416,7 @@ A ***SQS Producer*** is any application, service or other component that produce
 A ***SQS Consumer*** is any application, service or other component that process SQS messagges, they are also responsible for deleting messages from the queue. An exmaple of Consumer can be a Lambda function.
 
 
-***SQS Resource Based Access Control Policies*** grant access to your queues from other AWS account. You can use also for grant access to some AWS services to publish to your queue. For some services like EC2 or Lambda you need to use an IAM Role to give the permission instead.
+***SQS Resource Based Access Control Policies*** grant access to your queues from other AWS account. You can use also them for grant access to some AWS services to publish to your queue. For some services like EC2 or Lambda you need to use an IAM Role to give the permission instead.
 
 The act of receiving messagges from a queue is called ***Polling***. By default is used the ***Short Polling***. Using the ***Long Polling*** allows to your consumers to wait for messagges to become available in the queue. Generally the long polling is cheaper because you are making fewer requests and connections.
 
