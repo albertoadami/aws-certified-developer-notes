@@ -18,6 +18,8 @@
 16. [Api Gateway](#api)
 17. [CloudWatch](#cloudwatch)
 18. [CloudFormation](#cloudformatiom)
+19. [System Manager Parameter Store][#system]
+20. [AWS Developer Tools](#developer)
 
 ## The Basic of AWS <a name = "introduction"></a>
 AWS provided three different ways to interact with their services:
@@ -478,3 +480,24 @@ CloudFormation supports a variety of AWS resources. Resource type identifiers fo
 With CloudFormation you can create, update or delete a group of AWS resources by creating, updating or deleting a corresponding stack. You can create separate stacks to isolate logically parts of your applications. If some resource cannot be created, CloudFront will rollback the Stack and automatically delete any resources that were created.
 
 ***CloudFormation Intrinsic Functions*** are provided by CloudFormation to help manage your stacks. You can use these functions to assign values to different CloudFormation properties that are only available at or after runtime. For example `Fn::GetAtt[InstanceName, Prop]` return the value of an attribute from a resource, it can be used to get the name or ARN of other resources for example.
+
+## System Manager Parameter Store <a name="system"></a>
+***System Manager*** allows you to centralize your operational data and automate tasks in AWS. ***System Manager Parameter Store*** provides secure storage for configurations and secrets such as passwords, database strings and license codes. You can use Parameter Store with KMS to save the data with encryption.
+
+## AWS Developer Tools <a name="developer"></a>
+***X-Ray*** is an AWS service that traces requests as they move through your applications, it collects data and makes it available to view, filter and sort. X-Ray generates a service map. A ***Segment*** is a data about the work done by your application, a ***Subsegment*** instead is a more granular view of data inside of segments. With ***Traces*** you can see all the requests as they go through your applications. 
+
+***Code Commit*** is a managed, secure and scalable source control service that hosts private Git repositories. You can integrate the repository notifications with SNS topics. Code Commit is fully managed by AWS and you can encrypt your data in AWS.
+
+***Code Build*** is a managed build service that can compile your code, run tests and produce deployment artifacts. It uses a `YAML` file that describes the collection of commands and settings to run a build. Code Build is fully managed by AWS and scales with your needs.
+
+***Code Deploy*** automates deployments of your applications to EC2, Lambda or on-premises environments. You can configure Code Deploy to use a blue-green deployment. If used to deploy Lambda applications, blue-green deployments can be happen in multiple ways:
+* ***Canary:*** a percentage of traffic is shifted to the new version;
+* ***Linear:*** traffic is shifted in equal increments;
+* ***All at once:*** immediately and completely shifted to the new version.
+
+On Code Deploy you can have multiple steps to run (BeforeInstall, AfterInstall, etc as example).
+
+***Code Pipeline*** is a continuos delivery service that can model, visualize your software release process. You can define a set of steps before new changes are released. Using Code Pipeline you can define multiple ***Stages***: build stage and deployment for example. ***Transitions*** are the processes from one stage to another inside a pipeline. The stages contains one or more ***actions***.
+
+***Code Star*** is an AWS service for creating, managing and working with AWS projects. It helps you to manager users and the access they require to interact with AWS services.
