@@ -18,7 +18,7 @@
 16. [Api Gateway](#api)
 17. [CloudWatch](#cloudwatch)
 18. [CloudFormation](#cloudformatiom)
-19. [System Manager Parameter Store][#system]
+19. [System Manager Parameter Store](#system)
 20. [AWS Developer Tools](#developer)
 
 ## The Basic of AWS <a name = "introduction"></a>
@@ -500,4 +500,4 @@ On Code Deploy you can have multiple steps to run (BeforeInstall, AfterInstall, 
 
 ***Code Pipeline*** is a continuos delivery service that can model, visualize your software release process. You can define a set of steps before new changes are released. Using Code Pipeline you can define multiple ***Stages***: build stage and deployment for example. ***Transitions*** are the processes from one stage to another inside a pipeline. The stages contains one or more ***actions***.
 
-***Code Star*** is an AWS service for creating, managing and working with AWS projects. It helps you to manager users and the access they require to interact with AWS services.
+***Code Star*** is an AWS service for creating, managing and working with AWS projects. It helps you to manage users and the access they require to interact with AWS services.
